@@ -1,0 +1,12 @@
+grid.linewidth : .3
+grid.alpha : .6
+figure.figsize : 5.5,6
+axes.linewidth : 1.2
+ytick.major.width : 2
+xtick.major.width : 2
+ytick.major.size : 6.5
+xtick.major.size : 6.5
+xtick.color : 0
+ytick.color : 0
+font.family : Arial
+font.sans-serif : Arial
