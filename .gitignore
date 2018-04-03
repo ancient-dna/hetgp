@@ -103,4 +103,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-./nb-log-*
+./notebooks/nb-log-*.err
+./notebooks/nb-log-*.out
