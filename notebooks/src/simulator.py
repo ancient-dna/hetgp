@@ -74,7 +74,7 @@ def simulate_reads(X, eps, lamb):
     n, p = X.shape
     C = np.random.poisson(lamb, size=(n, p)) 
     P = X / 2.
-    Y = np.random.binomial(C, (eps * P) + ((1. - eps ) * P))
+    Y = np.random.binomial(C, (eps * P) + ((1. - eps ) * (1. - P)))
     
     return((Y, C))
 
