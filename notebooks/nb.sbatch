@@ -5,7 +5,7 @@
 #SBATCH --account=pi-jnovembre
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --mem-per-cpu=20G
+#SBATCH --mem-per-cpu=30G
 #SBATCH --job-name=nb-tunnel
 #SBATCH --output=nb-log-%J.out
 #SBATCH --error=nb-log-%J.err

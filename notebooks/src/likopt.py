@@ -1,11 +1,13 @@
-"""
+"""A module for computing the maximum likelihood of 
+the mixture propotions i.e. genotype frequencies and 
+related qunatities.
 """
 import numpy as np
 import cvxpy as cvx
 import scipy.stats as stats
 
 
-def comp_lik_mat(y_i, c_i, eps):
+def comp_lik_mat(y_i, c_i, eps, n_samp=0):
     """Compute likelihood matrix for an individual
     
     Args 
@@ -29,6 +31,10 @@ def comp_lik_mat(y_i, c_i, eps):
     L[:,1] = stats.binom.pmf(y_i, c_i, .5, loc=0)
     L[:,2] = stats.binom.pmf(y_i, c_i, 1. - eps, loc=0)
     
+    if n_samp != 0:
+        idx = np.random.choice(range(p), replace=True, size=n_samp)
+        L = L[idx, :]
+        
     return(L)
     
     
@@ -69,7 +75,7 @@ def est_freq_read(L):
 
 
 def inv22(A):
-    """Inverse of a 2 x 2 matrix
+    """Analytic Inverse of a 2 x 2 matrix
     
     Args
     ----
@@ -96,49 +102,55 @@ def inv22(A):
     return(Ainv)
 
 
-def comp_fish_info(L, pi_hat):
-    """Compute the "observed" fisher information matrix 
-    plugging in the mle
+def comp_hessian(L, pi_hat):
+    """Modified from ...
+    
+    https://github.com/pcarbo/mixopt/experiments/blob/master/code
+    
+    Computes the hessian of the negative log likelihood with respect to the 
+    mixture proportions. We plugin the mle as our estimate for the mixture propotions
+    in to hessian.
     
     Args
     ----
     L : np.array
         p x 3 matrix of likelihoods
+        
     pi_hat : np.array
+        3 x 1 vector of estimated mixture proportions
+        
+    Returns
+    -------
+    H : np.array
+        3 x 3 hessian 
     """
-    I = np.empty((2, 2))
-    denom = np.square(L @ pi_hat)
-    d_02 = L[:, 0] - L[:, 2]
-    d_21 = L[:, 2] - L[:, 1]
-    d_12 = L[:, 1] - L[:, 2]
+    a = (1.0 / np.asarray(L @ pi_hat))
+    Y = (a * L)
+    H = Y.T @ Y
     
-    I[0, 0] = -np.sum(np.square(d_02) / denom)
-    I[0, 1] = -np.sum((d_02 * d_21) / denom)
-    I[1, 0] = -I[0, 1]
-    I[1, 1] = -np.sum(np.square(d_12) / denom)
-    
-    return(I)
+    return(H)
     
     
-def comp_lik_var(I, p):
-    """Compute asymptomatic variance for an individual given 
-    their mle estimate of expected genotype frequencies. This is computed from 
-    the marginal variance of the inverse of the observed fisher infromation i.e.
-    the asymptomatic covariance matrix of the the three genotype frequencies
+def comp_lik_var(L, pi_hat):
+    """Computes the marginal variance of the likelihood by 
+    computing the invsere of the hessian of the negative log-liklihood
+    i.e. the negative fisher information matrix.
     
     Args
     ----
-    I : np.array
-        fisher information matrix
-    p : float
-        number of snps
-
+    L : np.array
+        p x 3 matrix of likelihoods
+        
+    pi_hat : np.array
+        3 x 1 vector of estimated mixture proportions
+        
     Returns
     -------
     sigma2 : float
         error variance in the likelihood
     """
-    S = inv22(-I) * p 
+    H = comp_hessian(L, pi_hat)
+    S = inv22(H)
     sigma2 = S[1, 1]
     
     return(sigma2)

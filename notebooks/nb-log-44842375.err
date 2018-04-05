@@ -1,0 +1,115 @@
+slurmstepd-midway2-0401: error: task/cgroup: unable to add task[pid=27037] to memory cg '(null)'
+[C 11:06:23.940 NotebookApp] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://10.50.222.145:14043/?token=087941ec27ef4636f514d122549445b8520a7c4cbf9aeb91
+TermSocket.open: 1
+TermSocket.open: Opened 1
+[E 16:12:56.292 NotebookApp] Uncaught exception DELETE /api/contents/src/Untitled.ipynb?1522962776276 (10.150.16.27)
+    HTTPServerRequest(protocol='http', host='10.50.222.145:14043', method='DELETE', uri='/api/contents/src/Untitled.ipynb?1522962776276', version='HTTP/1.1', remote_ip='10.150.16.27')
+    Traceback (most recent call last):
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/send2trash/plat_other.py", line 141, in find_ext_volume_fallback_trash
+        check_create(trash_dir)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/send2trash/plat_other.py", line 86, in check_create
+        os.makedirs(dir, 0o700)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/os.py", line 220, in makedirs
+        mkdir(name, mode)
+    PermissionError: [Errno 13] Permission denied: b'/project/.Trash-238778428'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/tornado/web.py", line 1543, in _execute
+        result = yield result
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/tornado/gen.py", line 1099, in run
+        value = future.result()
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/tornado/gen.py", line 315, in wrapper
+        yielded = next(result)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/notebook/services/contents/handlers.py", line 235, in delete
+        yield gen.maybe_future(cm.delete(path))
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/notebook/services/contents/manager.py", line 278, in delete
+        self.delete_file(path)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/notebook/services/contents/filemanager.py", line 499, in delete_file
+        send2trash(os_path)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/send2trash/plat_other.py", line 191, in send2trash
+        dest_trash = find_ext_volume_trash(topdir)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/send2trash/plat_other.py", line 151, in find_ext_volume_trash
+        trash_dir = find_ext_volume_fallback_trash(volume_root)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/send2trash/plat_other.py", line 144, in find_ext_volume_fallback_trash
+        raise TrashPermissionError(e.filename)
+    send2trash.exceptions.TrashPermissionError: [Errno 13] Permission denied: b'/project/.Trash-238778428'
+[E 16:12:56.485 NotebookApp] {
+      "Host": "10.50.222.145:14043",
+      "Connection": "keep-alive",
+      "Authorization": "token 087941ec27ef4636f514d122549445b8520a7c4cbf9aeb91",
+      "Origin": "http://10.50.222.145:14043",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36",
+      "Content-Type": "application/json",
+      "Accept": "*/*",
+      "Referer": "http://10.50.222.145:14043/lab",
+      "Accept-Encoding": "gzip, deflate",
+      "Accept-Language": "en-US,en;q=0.9",
+      "Cookie": "_xsrf=2|12455b0a|2f78a6daf344bf2ea54d67af9698dab6|1522933123; username-10-50-222-145-28700=\"2|1:0|10:1522942804|28:username-10-50-222-145-28700|44:ZWYwNjg1MGNhMWZhNDgzN2E5Yzc5YzZiOGVlZTNhMzQ=|1eaeb7a94be880105639ebc5f7d103804ac2cc19b667f082558e2a313f645137\"; username-10-50-222-145-17598=\"2|1:0|10:1522944308|28:username-10-50-222-145-17598|44:YzQ0MGU4YWNhY2EzNGFhODhmOGRlMmE5OTg3NzE5ZGI=|21c396d9b1d10ba9b0d3be366dff701f18d92daac803eb52239f7976ea40a3bb\"; username-10-50-222-145-14043=\"2|1:0|10:1522962775|28:username-10-50-222-145-14043|44:YjI5YzUxZDNjYzBlNDk4Y2JmMDk0YzA2OGE4MzU4OWY=|5b1dda039455987397b4d492c15193b5bc5c1fcca5b93f11917f892d57b1583a\""
+    }
+[E 16:12:56.485 NotebookApp] 500 DELETE /api/contents/src/Untitled.ipynb?1522962776276 (10.150.16.27) 196.88ms referer=http://10.50.222.145:14043/lab
+[E 16:13:03.796 NotebookApp] Uncaught exception DELETE /api/contents/src/Untitled.ipynb?1522962783782 (10.150.16.27)
+    HTTPServerRequest(protocol='http', host='10.50.222.145:14043', method='DELETE', uri='/api/contents/src/Untitled.ipynb?1522962783782', version='HTTP/1.1', remote_ip='10.150.16.27')
+    Traceback (most recent call last):
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/send2trash/plat_other.py", line 141, in find_ext_volume_fallback_trash
+        check_create(trash_dir)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/send2trash/plat_other.py", line 86, in check_create
+        os.makedirs(dir, 0o700)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/os.py", line 220, in makedirs
+        mkdir(name, mode)
+    PermissionError: [Errno 13] Permission denied: b'/project/.Trash-238778428'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/tornado/web.py", line 1543, in _execute
+        result = yield result
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/tornado/gen.py", line 1099, in run
+        value = future.result()
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/tornado/gen.py", line 315, in wrapper
+        yielded = next(result)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/notebook/services/contents/handlers.py", line 235, in delete
+        yield gen.maybe_future(cm.delete(path))
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/notebook/services/contents/manager.py", line 278, in delete
+        self.delete_file(path)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/notebook/services/contents/filemanager.py", line 499, in delete_file
+        send2trash(os_path)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/send2trash/plat_other.py", line 191, in send2trash
+        dest_trash = find_ext_volume_trash(topdir)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/send2trash/plat_other.py", line 151, in find_ext_volume_trash
+        trash_dir = find_ext_volume_fallback_trash(volume_root)
+      File "/project/jnovembre/jhmarcus/src/miniconda3/envs/gp_env/lib/python3.6/site-packages/send2trash/plat_other.py", line 144, in find_ext_volume_fallback_trash
+        raise TrashPermissionError(e.filename)
+    send2trash.exceptions.TrashPermissionError: [Errno 13] Permission denied: b'/project/.Trash-238778428'
+[E 16:13:03.798 NotebookApp] {
+      "Host": "10.50.222.145:14043",
+      "Connection": "keep-alive",
+      "Authorization": "token 087941ec27ef4636f514d122549445b8520a7c4cbf9aeb91",
+      "Origin": "http://10.50.222.145:14043",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36",
+      "Content-Type": "application/json",
+      "Accept": "*/*",
+      "Referer": "http://10.50.222.145:14043/lab",
+      "Accept-Encoding": "gzip, deflate",
+      "Accept-Language": "en-US,en;q=0.9",
+      "Cookie": "_xsrf=2|12455b0a|2f78a6daf344bf2ea54d67af9698dab6|1522933123; username-10-50-222-145-28700=\"2|1:0|10:1522942804|28:username-10-50-222-145-28700|44:ZWYwNjg1MGNhMWZhNDgzN2E5Yzc5YzZiOGVlZTNhMzQ=|1eaeb7a94be880105639ebc5f7d103804ac2cc19b667f082558e2a313f645137\"; username-10-50-222-145-17598=\"2|1:0|10:1522944308|28:username-10-50-222-145-17598|44:YzQ0MGU4YWNhY2EzNGFhODhmOGRlMmE5OTg3NzE5ZGI=|21c396d9b1d10ba9b0d3be366dff701f18d92daac803eb52239f7976ea40a3bb\"; username-10-50-222-145-14043=\"2|1:0|10:1522962783|28:username-10-50-222-145-14043|44:NDhhNzA5OWU3NjBiNDU0NWFkYjcyYmVmZjYzNmQ1NGU=|9e9882ad2e668e7b069fd860f1702af7d78e7199362c8ac78297232fcc8188c9\""
+    }
+[E 16:13:03.798 NotebookApp] 500 DELETE /api/contents/src/Untitled.ipynb?1522962783782 (10.150.16.27) 3.11ms referer=http://10.50.222.145:14043/lab
+2018-04-05 16:17:11.955202: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-05 16:28:52.483800: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-05 16:31:10.001274: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-05 16:32:57.034978: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-05 16:44:37.247128: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-05 16:55:26.408699: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-05 16:56:38.060071: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-05 16:58:46.984592: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-05 17:01:17.777385: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-05 17:02:46.927569: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-05 17:13:58.665927: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-05 17:24:02.072607: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+Websocket closed
