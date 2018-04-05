@@ -1,0 +1,6 @@
+slurmstepd-midway2-0401: error: task/cgroup: unable to add task[pid=17401] to memory cg '(null)'
+[C 07:58:38.852 NotebookApp] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://10.50.222.145:28700/?token=a44da1a05d5113e81d1bb962918793314dc8e6552edef55c
