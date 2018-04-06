@@ -74,34 +74,6 @@ def est_freq_read(L):
     return(pi_hat)
 
 
-def inv22(A):
-    """Analytic Inverse of a 2 x 2 matrix
-    
-    Args
-    ----
-    A : np.array
-        2 x 2 matrix
-    
-    Returns
-    -------
-    Ainv : np.array
-        inverse of A
-    """
-    a = A[0, 0]
-    b = A[0, 1]
-    c = A[1, 0]
-    d = A[1, 1]
-    det = 1. / ((a * d) - (b * c))
-    B = np.empty((2, 2))
-    B[0, 0] = d
-    B[0, 1] = -b
-    B[1, 0] = -c
-    B[1, 1] = a
-    Ainv = det * B
-    
-    return(Ainv)
-
-
 def comp_hessian(L, pi_hat):
     """Modified from ...
     
@@ -150,7 +122,7 @@ def comp_lik_var(L, pi_hat):
         error variance in the likelihood
     """
     H = comp_hessian(L, pi_hat)
-    S = inv22(H)
+    S = np.linalg.inv(H)
     sigma2 = S[1, 1]
     
     return(sigma2)
