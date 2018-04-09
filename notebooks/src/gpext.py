@@ -23,7 +23,7 @@ class GPRHet(gpflow.models.GPModel):
         Y = gpflow.params.DataHolder(Y)
         gpflow.models.GPModel.__init__(self, X, Y, kern, likelihood, mean_function, **kwargs)
         self.num_data, self.input_dim = X.shape
-        self.d = gpflow.Param(np.random.randn(self.num_data))
+        self.s2_hat = gpflow.Param(np.random.randn(self.num_data))
 
     @gpflow.decors.name_scope('likelihood')
     @gpflow.decors.params_as_tensors
@@ -32,7 +32,7 @@ class GPRHet(gpflow.models.GPModel):
         Construct a tensorflow function to compute the likelihood.
             \log p(Y | theta).
         """
-        K = self.kern.K(self.X) + tf.diag(tf.exp(self.d))
+        K = self.kern.K(self.X) + tf.diag(self.s2_hat) + (tf.eye(tf.shape(self.X)[0], dtype=gpflow.settings.float_type) * self.likelihood.variance)
         L = tf.cholesky(K)
         m = self.mean_function(self.X)
         logpdf = gpflow.densities.multivariate_normal(self.Y, m, L)  # (R,) log-likelihoods for each independent dimension of Y
@@ -49,7 +49,7 @@ class GPRHet(gpflow.models.GPModel):
         where F* are points on the GP at Xnew, Y are noisy observations at X.
         """
         Kx = self.kern.K(self.X, Xnew)
-        K = self.kern.K(self.X) + tf.diag(tf.exp(self.d))
+        K = self.kern.K(self.X) + tf.diag(self.s2_hat) + (tf.eye(tf.shape(self.X)[0], dtype=gpflow.settings.float_type) * self.likelihood.variance)
         L = tf.cholesky(K)
         A = tf.matrix_triangular_solve(L, Kx, lower=True)
         V = tf.matrix_triangular_solve(L, self.Y - self.mean_function(self.X))

@@ -5,8 +5,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def simulate_frequencies(p, n_e, max_gen):
-    """Simulate frequencies under the Wright Fisher model
+def simulate_frequencies(p, n_e, max_gen, u, v, f=None):
+    """Simulate frequencies under the Wright Fisher model at 
+    mutation drift equlibrium
     
     Args
     ----
@@ -14,6 +15,10 @@ def simulate_frequencies(p, n_e, max_gen):
         number of SNPs
     n_e : int
         effective population size
+    u : float
+        A->a mutation rate
+    v : float
+        a->A mutation rate
     max_gen : int
         maximum number of generations
     
@@ -21,12 +26,18 @@ def simulate_frequencies(p, n_e, max_gen):
     -------
     F : np.array
         max_gen x p matrix
-    
     """
     F = np.empty((max_gen, p))
-    F[0, :] = np.random.beta(1., 1., size=p)
+    if f is None:
+        alpha = 4. * n_e * u
+        beta = 4. * n_e * v
+        F[0, :] = np.random.beta(alpha, beta, size=p)
+    else:
+        F[0, :] = f
+        
     for t in range(1, max_gen):
-        F[t, :] = np.random.binomial(2 * n_e, F[t-1, :]) / (2 * n_e)
+        p = ((1.0 - u - v) * F[t-1,:]) + v
+        F[t, :] = np.random.binomial(2 * n_e, p) / (2 * n_e)
     
     return(F)
 
