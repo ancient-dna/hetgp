@@ -63,4 +63,18 @@ class GPRHet(gpflow.models.GPModel):
             fvar = tf.tile(tf.reshape(fvar, (-1, 1)), [1, tf.shape(self.Y)[1]])
         return fmean, fvar
 
+    
+class ExpNonSep(gpflow.kernels.Stationary):
+    """
+    A non-separable exponential kernel
+    """
+    @gpflow.decors.params_as_tensors
+    def K(self, X, X2=None, presliced=False):
+        if not presliced:
+            X, X2 = self._slice(X, X2)
 
+        r2 = self.scaled_square_dist(X=X, X2=X2)
+        r = tf.sqrt(r2 + 1e-12)
+
+        return self.variance * tf.exp(-.5 * r)
+    
