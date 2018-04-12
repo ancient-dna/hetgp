@@ -1,0 +1,7 @@
+slurmstepd-midway2-0401: error: task/cgroup: unable to add task[pid=20592] to memory cg '(null)'
+[C 10:07:19.033 NotebookApp] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://10.50.222.145:22404/?token=5a9a13cceb11b8dca6bee4f90c287fe0f92e405959348285
+2018-04-12 10:17:15.046057: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
